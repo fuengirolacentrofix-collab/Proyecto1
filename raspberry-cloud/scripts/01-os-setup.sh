@@ -49,7 +49,8 @@ apt install -y \
     wget \
     htop \
     vim \
-    tmux
+    tmux \
+    openssh-server
 
 # 3. Configurar actualizaciones automáticas de seguridad
 log_info "Configurando actualizaciones automáticas..."
@@ -243,7 +244,11 @@ EOF
 
 # 10. Configurar SSH (preparación para hardening posterior)
 log_info "Preparando configuración SSH..."
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+if [ -f /etc/ssh/sshd_config ]; then
+    cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+else
+    log_warn "No se encontró /etc/ssh/sshd_config, omitiendo backup."
+fi
 
 # 11. Configurar timezone
 log_info "Configurando timezone a Europe/Madrid..."
