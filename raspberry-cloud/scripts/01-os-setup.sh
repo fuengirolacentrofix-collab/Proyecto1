@@ -42,7 +42,6 @@ apt install -y \
     auditd \
     apparmor \
     apparmor-utils \
-    libpam-tmpdir \
     libpam-pwquality \
     git \
     curl \
