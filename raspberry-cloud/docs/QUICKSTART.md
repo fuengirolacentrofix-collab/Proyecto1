@@ -106,7 +106,7 @@ sudo backup-status.sh
 ### No puedo acceder a Nextcloud
 ```bash
 # Verificar servicios
-sudo systemctl status nginx php8.2-fpm mariadb
+sudo systemctl status nginx php8.1-fpm mariadb
 
 # Ver logs
 sudo tail -f /var/log/nginx/error.log

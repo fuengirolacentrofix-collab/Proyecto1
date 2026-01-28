@@ -60,10 +60,10 @@ if systemctl is-active apparmor &>/dev/null; then
         aa-enforce /etc/apparmor.d/*
         
         # Crear perfil personalizado para Nextcloud
-        cat > /etc/apparmor.d/usr.bin.php-fpm8.2 << 'EOF'
+        cat > /etc/apparmor.d/usr.bin.php-fpm8.1 << 'EOF'
 #include <tunables/global>
 
-/usr/sbin/php-fpm8.2 {
+/usr/sbin/php-fpm8.1 {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/php>
@@ -73,7 +73,7 @@ if systemctl is-active apparmor &>/dev/null; then
   capability chown,
   capability dac_override,
   
-  /etc/php/8.2/** r,
+  /etc/php/8.1/** r,
   /usr/lib/php/** mr,
   /var/www/nextcloud/** rw,
   /mnt/secure_cloud/** rw,
@@ -87,7 +87,7 @@ if systemctl is-active apparmor &>/dev/null; then
 }
 EOF
         
-        apparmor_parser -r /etc/apparmor.d/usr.bin.php-fpm8.2
+        apparmor_parser -r /etc/apparmor.d/usr.bin.php-fpm8.1
         log_info "Perfiles AppArmor reforzados"
     fi
 fi

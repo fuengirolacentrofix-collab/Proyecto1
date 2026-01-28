@@ -255,7 +255,7 @@ sudo journalctl -f
 htop
 
 # 2. Reiniciar servicios
-sudo systemctl restart php8.2-fpm
+sudo systemctl restart php8.1-fpm
 sudo systemctl restart nginx
 sudo systemctl restart redis-server
 
@@ -337,7 +337,7 @@ sudo systemctl stop nextcloud-cron
 
 # Systemd
 sudo journalctl -u nginx
-sudo journalctl -u php8.2-fpm
+sudo journalctl -u php8.1-fpm
 sudo journalctl -u mariadb
 sudo journalctl -u wg-quick@wg0
 ```
@@ -434,7 +434,7 @@ _______________________________________________
 
 ```bash
 # Parada de emergencia
-sudo systemctl stop nginx php8.2-fpm mariadb
+sudo systemctl stop nginx php8.1-fpm mariadb
 
 # Desconectar de Internet
 sudo ufw disable

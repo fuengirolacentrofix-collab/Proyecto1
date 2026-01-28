@@ -155,7 +155,7 @@ sudo systemctl restart wg-quick@wg0 # Reiniciar VPN
 ```bash
 # Reiniciar servicios
 sudo systemctl restart nginx
-sudo systemctl restart php8.2-fpm
+sudo systemctl restart php8.1-fpm
 sudo systemctl restart mariadb
 
 # Ver logs

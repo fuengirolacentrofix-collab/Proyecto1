@@ -134,7 +134,7 @@ echo ""
 
 # Servicios críticos
 echo "=== Servicios Críticos ==="
-for service in nginx php8.2-fpm mariadb wg-quick@wg0 fail2ban; do
+for service in nginx php8.1-fpm mariadb wg-quick@wg0 fail2ban; do
     STATUS=$(systemctl is-active $service)
     if [[ "$STATUS" == "active" ]]; then
         echo "✓ $service: OK"
