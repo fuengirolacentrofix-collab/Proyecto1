@@ -39,19 +39,19 @@ apt update
 apt install -y \
     nginx \
     mariadb-server \
-    php8.2-fpm \
-    php8.2-mysql \
-    php8.2-curl \
-    php8.2-gd \
-    php8.2-intl \
-    php8.2-mbstring \
-    php8.2-xml \
-    php8.2-zip \
-    php8.2-bcmath \
-    php8.2-gmp \
-    php8.2-imagick \
-    php8.2-redis \
-    php8.2-apcu \
+    php8.1-fpm \
+    php8.1-mysql \
+    php8.1-curl \
+    php8.1-gd \
+    php8.1-intl \
+    php8.1-mbstring \
+    php8.1-xml \
+    php8.1-zip \
+    php8.1-bcmath \
+    php8.1-gmp \
+    php8.1-imagick \
+    php8.1-redis \
+    php8.1-apcu \
     redis-server \
     unzip \
     wget \
@@ -103,7 +103,7 @@ log_info "Base de datos creada"
 # 3. Configurar PHP
 log_info "Configurando PHP..."
 
-PHP_INI="/etc/php/8.2/fpm/php.ini"
+PHP_INI="/etc/php/8.1/fpm/php.ini"
 cp "$PHP_INI" "${PHP_INI}.backup"
 
 # Optimizaciones PHP
@@ -119,7 +119,7 @@ sed -i 's/;opcache.max_accelerated_files=.*/opcache.max_accelerated_files=10000/
 sed -i 's/;opcache.save_comments=.*/opcache.save_comments=1/' "$PHP_INI"
 
 # Configurar PHP-FPM
-PHP_FPM_CONF="/etc/php/8.2/fpm/pool.d/www.conf"
+PHP_FPM_CONF="/etc/php/8.1/fpm/pool.d/www.conf"
 cp "$PHP_FPM_CONF" "${PHP_FPM_CONF}.backup"
 
 sed -i 's/pm = .*/pm = dynamic/' "$PHP_FPM_CONF"
@@ -128,7 +128,7 @@ sed -i 's/pm.start_servers = .*/pm.start_servers = 4/' "$PHP_FPM_CONF"
 sed -i 's/pm.min_spare_servers = .*/pm.min_spare_servers = 2/' "$PHP_FPM_CONF"
 sed -i 's/pm.max_spare_servers = .*/pm.max_spare_servers = 6/' "$PHP_FPM_CONF"
 
-systemctl restart php8.2-fpm
+systemctl restart php8.1-fpm
 
 # 4. Descargar Nextcloud
 log_info "Descargando Nextcloud ${NEXTCLOUD_VERSION}..."
@@ -162,7 +162,7 @@ log_info "Configurando Nginx..."
 
 cat > /etc/nginx/sites-available/nextcloud << EOF
 upstream php-handler {
-    server unix:/var/run/php/php8.2-fpm.sock;
+    server unix:/var/run/php/php8.1-fpm.sock;
 }
 
 # Redirigir HTTP a HTTPS
